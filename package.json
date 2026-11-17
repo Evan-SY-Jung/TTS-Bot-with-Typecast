@@ -1,30 +1,30 @@
 {
-  "name": "ttsbot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "dev": "ts-node src/index.ts",
-    "dev:bot2": "node --env-file=.env.bot2 -r ts-node/register src/index.ts",
-    "build": "tsc",
-    "start": "node .",
-    "start:bot2": "node --env-file=.env.bot2 ."
+  "name": "tts-bot-with-typecast",
+  "version": "2.0.0",
+  "private": true,
+  "description": "채팅을 Typecast 음성으로 읽어 주는 Discord TTS 봇",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/index.ts",
+    "dev": "node --env-file-if-exists=.env --watch src/index.ts",
+    "deploy-commands": "node --env-file-if-exists=.env src/deploy-commands.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "node --test \"src/**/*.test.ts\""
+  },
   "dependencies": {
     "@discordjs/voice": "^0.19.2",
-    "@neosapience/typecast-js": "^0.1.8",
-    "discord.js": "^14.25.1",
-    "dotenv": "^17.3.1",
-    "ffmpeg-static": "^5.3.0",
-    "mongoose": "^9.3.1"
+    "@neosapience/typecast-js": "^0.5.0",
+    "discord.js": "^14.28.1",
+    "ffmpeg-static": "^5.3.0"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "@biomejs/biome": "^2.6.8",
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2"
   }
 }
